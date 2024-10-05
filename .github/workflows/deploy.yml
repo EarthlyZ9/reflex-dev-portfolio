@@ -9,6 +9,8 @@ on:
 
 jobs:
   build:
+    env:
+      REFLEX_API_URL: ${{ secrets.REFLEX_API_URL }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -38,7 +40,8 @@ jobs:
         run: poetry install
 
       - name: Build project
-        run: poetry run reflex export --no-zip
+        run: |
+          API_URL=${{ env.REFLEX_API_URL }} poetry run reflex export --no-zip
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
