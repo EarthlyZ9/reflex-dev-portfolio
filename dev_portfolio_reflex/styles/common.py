@@ -1,0 +1,5 @@
+SECONDARY_ACCENT_COLOR = "color(display-p3 0.45 0.79 0.89 / 1)"
+ACCENT_COLOR = "color(display-p3 0.49 0.72 1)"
+# ACCENT_COLOR = "#1d9cdf"
+PRIMARY_BG_COLOR = "#404040"
+SECONDARY_BG_COLOR = "#393939"
