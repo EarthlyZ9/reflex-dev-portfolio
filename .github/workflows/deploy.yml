@@ -38,9 +38,7 @@ jobs:
         run: poetry install
 
       - name: Build project
-        run: |
-          poetry run reflex export --frontend-only --no-zip
-          touch ./.web/_static/.nojekyll
+        run: poetry run reflex export --frontend-only --no-zip
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
@@ -48,3 +46,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./.web/_static
+          cname: earthlyz9.dev
