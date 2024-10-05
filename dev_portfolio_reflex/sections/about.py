@@ -132,10 +132,10 @@ def about() -> rx.Component:
                 "graduation-cap",
                 "Education",
                 rx.list.unordered(
-                    rx.list.item(_bullet_point_content("2019.02", "동탄국제고등학교 졸업")),
-                    rx.list.item(_bullet_point_content("2019.03", "연세대 경영학과 입학")),
-                    rx.list.item(_bullet_point_content("2022.01", "GWU 교환학생")),
                     rx.list.item(_bullet_point_content("2024.02", "연세대 경영학과 졸업")),
+                    rx.list.item(_bullet_point_content("2022.01", "GWU 교환학생")),
+                    rx.list.item(_bullet_point_content("2019.03", "연세대 경영학과 입학")),
+                    rx.list.item(_bullet_point_content("2019.02", "동탄국제고등학교 졸업")),
                 ),
             ),
             # Certificates
