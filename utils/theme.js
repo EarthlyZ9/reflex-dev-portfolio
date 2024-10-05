@@ -1,1 +1,0 @@
-export default ({ ["styles"] : ({ ["global"] : ({ [":root"] : ({  }), ["body"] : ({ ["body"] : ({ ["background"] : "#f5f5f5", ["margin"] : "2rem", ["padding"] : "0", ["fontFamily"] : "Arial, sans-serif", ["--default-font-family"] : "Arial, sans-serif", ["height"] : "100%", ["boxSizing"] : "border-box" }) }) }) }) })
