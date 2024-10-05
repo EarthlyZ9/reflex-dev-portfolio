@@ -38,7 +38,9 @@ jobs:
         run: poetry install
 
       - name: Build project
-        run: poetry run reflex export --frontend-only --no-zip
+        run: |
+          poetry run reflex export --frontend-only --no-zip
+          touch ./.web/_static/.nojekyll
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
