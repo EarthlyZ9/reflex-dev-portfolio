@@ -1,11 +1,23 @@
+from copy import deepcopy
 from datetime import datetime
 from typing import Optional
 
 import reflex as rx
 import requests
 
-from dev_portfolio_reflex.consts import notion, BLOG_URL
+from dev_portfolio_reflex.consts import NOTION_API_KEY, BLOG_URL
 from dev_portfolio_reflex.layouts.section import section_layout
+
+NOTION_DATABASE_IDS = {
+    "개발생각": "23645d879faa4dcfad43945f0b3dad32",
+    "Fluent Python": "eb500ba0c7e143748cade86de85948c6",
+    "Web": "c1febf8570564c5faafe92b32fa85d33",
+    "CS": "c1febf8570564c5faafe92b32fa85d33",
+}
+CUSTOM_FILTER = {
+    "Web": {"property": "Tags", "multi_select": {"contains": "Web"}},
+    "CS": {"property": "Tags", "multi_select": {"contains": "CS"}},
+}
 
 
 class PostContent(rx.Base):
@@ -19,17 +31,6 @@ class PostContent(rx.Base):
 
 
 class PostDataState(rx.State):
-    NOTION_DATABASE_IDS = {
-        "개발생각": "23645d879faa4dcfad43945f0b3dad32",
-        "Fluent Python": "eb500ba0c7e143748cade86de85948c6",
-        "Web": "c1febf8570564c5faafe92b32fa85d33",
-        "CS": "c1febf8570564c5faafe92b32fa85d33",
-    }
-    CUSTOM_FILTER = {
-        "Web": {"property": "Tags", "multi_select": {"contains": "Web"}},
-        "CS": {"property": "Tags", "multi_select": {"contains": "CS"}},
-    }
-
     data_type: str = "개발생각"
     data: list[PostContent] = []
     fetched_items: int = 0
@@ -49,20 +50,21 @@ class PostDataState(rx.State):
         self.load_entries(self.start_cursor)
 
     def load_entries(self, start_cursor: Optional[str] = None) -> list[PostContent]:
-        base_filter = [{"property": "Publish", "checkbox": {"equals": True}}]
-        if self.CUSTOM_FILTER.get(self.data_type, None):
-            base_filter.append(self.CUSTOM_FILTER[self.data_type])
+        base_filter: list[dict] = [{"property": "Publish", "checkbox": {"equals": True}}]
+        query_filter = deepcopy(base_filter)
+        if CUSTOM_FILTER.get(self.data_type, None):
+            query_filter.append(CUSTOM_FILTER[self.data_type])
         payload = {
             "page_size": self.PAGE_SIZE,
-            "filter": {"and": base_filter},
+            "filter": {"and": query_filter},
             "sorts": [{"property": "Created", "direction": "descending"}],
         }
         if start_cursor:
             payload["start_cursor"] = start_cursor
         res = requests.post(
-            f"https://api.notion.com/v1/databases/{self.NOTION_DATABASE_IDS[self.data_type]}/query",
+            f"https://api.notion.com/v1/databases/{NOTION_DATABASE_IDS[self.data_type]}/query",
             headers={
-                "Authorization": f"Bearer {notion}",
+                "Authorization": f"Bearer {NOTION_API_KEY}",
                 "Content-Type": "application/json",
                 "Notion-Version": "2022-06-28",
             },
@@ -123,7 +125,11 @@ def post_item(item: PostContent) -> rx.Component:
             )
         ),
         rx.table.cell(
-            rx.cond(item.tags, rx.foreach(item.tags, lambda tag: rx.badge(tag, color=item.tag_color)), rx.text("-"))
+            rx.cond(
+                item.tags,
+                rx.foreach(item.tags, lambda tag: rx.badge(tag, color=item.tag_color, color_scheme="gray")),
+                rx.text("-"),
+            )
         ),
         rx.table.cell(item.created),
     )
@@ -159,7 +165,7 @@ def blog() -> rx.Component:
             ),
             # Database 선택 드랍다운
             rx.select(
-                PostDataState.NOTION_DATABASE_IDS.keys(),
+                NOTION_DATABASE_IDS.keys(),
                 default_value="개발생각",
                 on_change=PostDataState.set_data_type,
             ),
