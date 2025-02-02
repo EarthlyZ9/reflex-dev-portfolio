@@ -13,10 +13,7 @@ NOTION_DATABASE_IDS = {
     "Fluent Python": "eb500ba0c7e143748cade86de85948c6",
     "Web": "c1febf8570564c5faafe92b32fa85d33",
     "CS": "c1febf8570564c5faafe92b32fa85d33",
-}
-CUSTOM_FILTER = {
-    "Web": {"property": "Tags", "multi_select": {"contains": "Web"}},
-    "CS": {"property": "Tags", "multi_select": {"contains": "CS"}},
+    "Engineering": "c1febf8570564c5faafe92b32fa85d33",
 }
 
 
@@ -52,8 +49,8 @@ class PostDataState(rx.State):
     def load_entries(self, start_cursor: Optional[str] = None) -> list[PostContent]:
         base_filter: list[dict] = [{"property": "Publish", "checkbox": {"equals": True}}]
         query_filter = deepcopy(base_filter)
-        if CUSTOM_FILTER.get(self.data_type, None):
-            query_filter.append(CUSTOM_FILTER[self.data_type])
+        if self.data_type not in ["개발생각", "Fluent Python"]:
+            query_filter.append({"property": "Tags", "multi_select": {"contains": self.data_type}})
         payload = {
             "page_size": self.PAGE_SIZE,
             "filter": {"and": query_filter},
