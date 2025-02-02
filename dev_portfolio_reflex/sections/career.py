@@ -4,6 +4,7 @@ from dev_portfolio_reflex.layouts.section import section_layout
 from dev_portfolio_reflex.styles.common import ACCENT_COLOR
 
 career_details = {
+    "Socar": ["ing"],
     "Crysbe": [
         "대량의 데이터 관리와 차트를 통한 시각화를 지원하는 대시보드 서비스를 위한 Django Ninja 기반의 RESTful API 개발",
         "다양한 소스로부터 대규모 데이터를 수집하고 가공하는 데이터 파이프라인 구축",
@@ -12,7 +13,7 @@ career_details = {
         "DRF 기반의 인플루언서 관리 솔루션 유지 보수 및 CI/CD 구축",
         "AWS 리소스의 중앙 관리를 위한 bastion host 구축",
         "기타 사내 클라우드 리소스 관리",
-    ]
+    ],
 }
 
 
@@ -110,7 +111,8 @@ def career() -> rx.Component:
         rx.divider(width="95%", margin="10px"),
         rx.tablet_and_desktop(
             rx.vstack(
-                _career_description("Crysbe (크리스비)", "2023.08.01 ~ ing", career_details["Crysbe"]),
+                _career_description("Crysbe (크리스비)", "2023.08.01 ~ 2024.10.25", career_details["Crysbe"]),
+                _career_description("Socar (쏘카)", "2023.08.01 ~ 2024.10.25", career_details["Socar"]),
                 spacing="0",
                 padding_left="30px",
                 margin_top="1rem",
@@ -120,7 +122,8 @@ def career() -> rx.Component:
         ),
         rx.mobile_only(
             rx.vstack(
-                _career_card("Crysbe (크리스비)", "2023.08.01 ~ ing", career_details["Crysbe"]),
+                _career_card("Crysbe (크리스비)", "2023.08.01 ~ 2024.10.25", career_details["Crysbe"]),
+                _career_card("Socar (쏘카)", "2023.08.01 ~ 2024.10.25", career_details["Socar"]),
                 spacing="1",
             ),
         ),

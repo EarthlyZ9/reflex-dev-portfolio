@@ -68,7 +68,7 @@ def _career_item(date: str, company_name: str, is_active: bool = False) -> rx.Co
         align="center",
         border_radius="10px",
         _hover={"background_color": SECONDARY_BG_COLOR} if is_active else {},
-        on_click=lambda: NavButtonState.set_active_button(2) if is_active else None,
+        on_click=NavButtonState.set_active_button(2),
         style={"cursor": "pointer"} if is_active else {},
         flex_wrap="wrap",
     )
@@ -120,8 +120,9 @@ def about() -> rx.Component:
             _card(
                 "briefcase-business",
                 "Career",
-                rx.hstack(
-                    _career_item("2023.08.01 ~ ing", "크리스비 (Crysbe)", True),
+                rx.vstack(
+                    _career_item("2024.10.28 ~ ing", "쏘카 (Socar)", is_active=True),
+                    _career_item("2023.08.01 ~ ing", "크리스비 (Crysbe)", is_active=False),
                     width="100%",
                 ),
                 grid_column="1 / -1",
