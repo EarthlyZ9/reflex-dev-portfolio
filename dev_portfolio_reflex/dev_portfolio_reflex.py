@@ -56,17 +56,11 @@ def index() -> rx.Component:
                 ),
                 direction="row",
                 align="start",
-            ),
-            rx.logo(
-                padding="6px",
-                position="fixed",
-                bottom="0rem",
-                background="transparent",
-                color="inherit",
-                z_index="20",
+                height="100%",
             ),
             margin="2rem 2rem",
             width="100%",
+            height="100%",
         ),
         # Tablet Layout
         rx.tablet_only(
@@ -91,6 +85,7 @@ def index() -> rx.Component:
                 height="calc(100vh - 4rem)",
             ),
             width="100%",
+            height="100%",
         ),
         rx.mobile_only(
             rx.flex(
@@ -118,25 +113,18 @@ def index() -> rx.Component:
                 height="calc(100vh - 4rem)",
             )
         ),
+        height="100%",
     )
 
 
 # Reflex App Configuration
 global_style = {
     "breakpoints": ["550px", "48em", "62em", "80em", "96em"],
-    "body": {
-        "background": "#f5f5f5",
-        "margin": "2rem",
-        "padding": "0",
-        "font_family": "Arial, sans-serif",
-        "height": "100%",
-        "box_sizing": "border-box",
-    },
 }
 app = rx.App(
     theme=rx.theme(appearance="dark", has_background=True, radius="large", accent_color="blue"),
     style=global_style,
     stylesheets=[
-        "/styles.css",  # This path is relative to assets/
+        "styles.css",
     ],
 )
