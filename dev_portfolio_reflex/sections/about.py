@@ -78,13 +78,18 @@ def _tech_badges() -> rx.Component:
     badge_contents: list[str] = [
         "Python",
         "Django",
-        "REST API",
+        "Fast API",
         "Celery",
         "Spring Boot",
-        "GitHub Actions",
+        "Go",
         "Docker",
         "Git",
         "AWS",
+        "Kubernetes",
+        "ArgoCD",
+        "Helm",
+        "PostgreSQL",
+        "PostGIS",
     ]
     return rx.flex(
         rx.foreach(
@@ -103,9 +108,9 @@ def about() -> rx.Component:
             "문제를 해결하는 개발자, 이지수입니다.",
             size="3",
         ),
-        rx.text("왕성한 호기심과 빠른 습득 속도, 강한 지구력을 기반으로 다양한 문제를 해결합니다.", size="2"),
+        rx.text("가설을 세우고 집요하게 증명해나가며 문제의 본질을 파고듭니다.", size="2"),
         rx.text(
-            "프로젝트 초기 세팅부터 배포 및 운영까지 프로덕트 개발의 전반적인 과정을 경험했습니다. RESTful 한 API 개발, 대규모 데이터 수집 및 분석을 위한 데이터 파이프라인 구축, GitHub Actions 와 AWS 를 이용한 CI/CD 구축 등을 비롯한 인프라 세팅의 경험이 있습니다.",
+            "정체를 거부하고 끊임없이 우상향하는 사람이 되고자 하며, 남들보다 반박자 빠르게 혹은 다르게 움직이는 것이 비범함을 만든다고 믿습니다.",
             size="2",
         ),
         rx.text(
@@ -122,7 +127,7 @@ def about() -> rx.Component:
                 "Career",
                 rx.vstack(
                     _career_item("2024.10.28 ~ ing", "쏘카 (Socar)", is_active=True),
-                    _career_item("2023.08.01 ~ ing", "크리스비 (Crysbe)", is_active=False),
+                    _career_item("2023.08.01 ~ 2024.10.25", "크리스비 (Crysbe)", is_active=False),
                     width="100%",
                 ),
                 grid_column="1 / -1",
@@ -144,14 +149,15 @@ def about() -> rx.Component:
                 "award",
                 "Certificates",
                 rx.list.unordered(
+                    rx.list.item(_bullet_point_content("2025.10", "리눅스마스터 2급")),
                     rx.list.item(_bullet_point_content("2024.06", "SQL 개발자")),
                     rx.list.item(_bullet_point_content("2023.06", "정보처리기사")),
-                    rx.list.item(_bullet_point_content("2022.01", "TOEIC 990")),
                     rx.list.item(_bullet_point_content("2019.10", "컴활 1급")),
                 ),
             ),
             columns=rx.breakpoints(xs="1", sm="2", md="2", lg="2", xl="2"),
             spacing="4",
             width="100%",
+            height="100%",
         ),
     )

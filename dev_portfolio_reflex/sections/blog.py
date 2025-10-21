@@ -4,20 +4,21 @@ from typing import Optional
 
 import reflex as rx
 import requests
+from pydantic import BaseModel
 
 from dev_portfolio_reflex.consts import NOTION_API_KEY, BLOG_URL
 from dev_portfolio_reflex.layouts.section import section_layout
 
 NOTION_DATABASE_IDS = {
-    "개발생각": "23645d879faa4dcfad43945f0b3dad32",
     "Fluent Python": "eb500ba0c7e143748cade86de85948c6",
+    "개발생각": "23645d879faa4dcfad43945f0b3dad32",
     "Web": "c1febf8570564c5faafe92b32fa85d33",
     "CS": "c1febf8570564c5faafe92b32fa85d33",
     "Engineering": "c1febf8570564c5faafe92b32fa85d33",
 }
 
 
-class PostContent(rx.Base):
+class PostContent(BaseModel):
     emoji: Optional[str]
     external_img: Optional[str]
     tags: list[str]

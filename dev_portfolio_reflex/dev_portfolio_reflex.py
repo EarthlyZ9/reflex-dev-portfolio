@@ -125,6 +125,6 @@ app = rx.App(
     theme=rx.theme(appearance="dark", has_background=True, radius="large", accent_color="blue"),
     style=global_style,
     stylesheets=[
-        "styles.css",
+        "/styles.css",
     ],
 )
