@@ -29,7 +29,7 @@ class PostContent(BaseModel):
 
 
 class PostDataState(rx.State):
-    data_type: str = "개발생각"
+    data_type: str = "Fluent Python"
     data: list[PostContent] = []
     fetched_items: int = 0
 
@@ -164,7 +164,7 @@ def blog() -> rx.Component:
             # Database 선택 드랍다운
             rx.select(
                 NOTION_DATABASE_IDS.keys(),
-                default_value="개발생각",
+                default_value="Fluent Python",
                 on_change=PostDataState.set_data_type,
             ),
             # 테이블
