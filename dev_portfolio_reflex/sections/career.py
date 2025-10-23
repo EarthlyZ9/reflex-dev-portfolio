@@ -113,12 +113,12 @@ def career() -> rx.Component:
                 size="2",
             ),
             rx.text(
-                "크리스비에서는 polars, RabbitMQ, Celery를 활용하여 매일 대량의 매출/마케팅 데이터를 수집·분석하고 30여 가지 차트로 시각화하는 데이터 파이프라인을 구축했습니다. Django Ninja 기반의 RESTful API 개발과 함께 프로젝트 초기 세팅부터 CI/CD 구축, AWS 인프라 설계까지 백엔드 시스템의 전 영역을 경험했습니다.",
+                "현재 쏘카에서는 MAU 30만의 쏘카일레클 전기자전거 서비스를 운영하며, 약 50,000대의 IoT 디바이스와 실시간 통신하는 시스템을 개발하고 있습니다. 하루 평균 6만 건의 라이딩 데이터를 안정적으로 처리하며, 대규모 트래픽 환경에서의 서비스 운영과 최적화 경험을 쌓고 있습니다.",
                 color="white",
                 size="2",
             ),
             rx.text(
-                "현재 쏘카에서는 MAU 30만의 쏘카일레클 전기자전거 서비스를 운영하며, 약 50,000대의 IoT 디바이스와 실시간 통신하는 시스템을 개발하고 있습니다. 하루 평균 6만 건의 라이딩 데이터를 안정적으로 처리하며, 대규모 트래픽 환경에서의 서비스 운영과 최적화 경험을 쌓고 있습니다.",
+                "크리스비에서는 polars, RabbitMQ, Celery를 활용하여 매일 대량의 매출/마케팅 데이터를 수집·분석하고 30여 가지 차트로 시각화하는 데이터 파이프라인을 구축했습니다. Django Ninja 기반의 RESTful API 개발과 함께 프로젝트 초기 세팅부터 CI/CD 구축, AWS 인프라 설계까지 백엔드 시스템의 전 영역을 경험했습니다.",
                 color="white",
                 size="2",
             ),
@@ -138,8 +138,8 @@ def career() -> rx.Component:
         rx.divider(width="95%", margin="10px"),
         rx.tablet_and_desktop(
             rx.vstack(
-                _career_description("Crysbe (크리스비)", "2023.08 ~ 2024.10", career_details["Crysbe"]),
                 _career_description("Socar (쏘카)", "2024.10.28 ~ ", career_details["Socar"]),
+                _career_description("Crysbe (크리스비)", "2023.08 ~ 2024.10", career_details["Crysbe"]),
                 spacing="0",
                 padding_left="30px",
                 margin_top="1rem",
@@ -149,8 +149,8 @@ def career() -> rx.Component:
         ),
         rx.mobile_only(
             rx.vstack(
-                _career_card("Crysbe (크리스비)", "2023.08 ~ 2024.10", career_details["Crysbe"]),
                 _career_card("Socar (쏘카)", "2024.10 ~ ", career_details["Socar"]),
+                _career_card("Crysbe (크리스비)", "2023.08 ~ 2024.10", career_details["Crysbe"]),
                 spacing="1",
             ),
         ),
